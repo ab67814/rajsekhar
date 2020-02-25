@@ -2,6 +2,9 @@ package rajsekhar.org;
 public class SmartPhone extends MobileDevice {
   private int megapixels;
   
+  protected SmartPhone() {
+	  
+  }
   SmartPhone(int megapixels)
   {
 	  this.megapixels=megapixels;
