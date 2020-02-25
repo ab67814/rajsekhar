@@ -8,7 +8,6 @@ public class Notifier implements Runnable {
 		this.msg = msg;
 	}
 
-	@Override
 	public void run() {
 		String name = Thread.currentThread().getName();
 		System.out.println(name + " started");

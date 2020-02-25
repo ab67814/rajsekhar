@@ -59,10 +59,16 @@ public class SinglyLinkedList {
                 System.out.println("Wrong Entry \n ");
                 break;   
             }
+            // only for delinking test
+//            Node n = new Node(2,new Node(4,new Node(6,null)));
+//            list.start.setLink(n);
+//            list.display();
+//            n.setData(n.getLink().data); 
+//            n.setLink(n.getLink().getLink()); 
             /*  Display List  */ 
             list.display();
             System.out.println("\nDo you want to continue (Type y or n) \n");
-            ch = scan.next().charAt(0);                        
+            ch = scan.next().charAt(0);  
         } while (ch == 'Y'|| ch == 'y'); 
         scan.close();
 }

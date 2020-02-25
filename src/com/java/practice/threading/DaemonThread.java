@@ -21,7 +21,6 @@ public class DaemonThread {
 
 class UserThread implements Runnable {
 
-	@Override
 	public void run() {
 		while (true) {
 			processSomething();

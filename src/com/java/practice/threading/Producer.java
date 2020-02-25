@@ -9,7 +9,6 @@ public class Producer implements Runnable {
     public Producer(BlockingQueue<Message> q){
         this.queue=q;
     }
-    @Override
     public void run() {
         //produce messages
         for(int i=0; i<100; i++){
