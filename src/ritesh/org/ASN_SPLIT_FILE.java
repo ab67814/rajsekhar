@@ -17,14 +17,13 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
-import org.apache.log4j.Logger;
 
 
 public class ASN_SPLIT_FILE {
 	static int  sequence[]=new int[10];
 	static String movefolder;         
 	
-	private static Logger logger = Logger.getLogger(ASN_SPLIT_FILE.class);
+	//private static Logger logger = Logger.getLogger(ASN_SPLIT_FILE.class);
 	
 	 static void read_File(String filename, String newfileLoc)
 	{     int seq=0;
@@ -36,8 +35,8 @@ public class ASN_SPLIT_FILE {
 		 String aline;
     try
     { 
-    	logger.debug("Reading file started." );
-    	logger.debug("Checking sequence numbers" );
+    	//logger.debug("Reading file started." );
+    	//logger.debug("Checking sequence numbers" );
 		 FileReader fr=new FileReader(filename);
 		 BufferedReader br = new BufferedReader(fr);
 		 while((aline=br.readLine())!=null)
@@ -74,35 +73,35 @@ public class ASN_SPLIT_FILE {
 				 
 			}
 		}br.close();
-		 logger.debug("Highest sequence available in file-->" + seq);
+		 //logger.debug("Highest sequence available in file-->" + seq);
 		 if (seq>sequence[0])
 			{
 				split=seq-sequence[0];
 				
-				logger.debug("File needs to be split into"+" "+ (split+1)+" " + "parts");
+				//logger.debug("File needs to be split into"+" "+ (split+1)+" " + "parts");
 				if(split>0)
 				{split_file(filename,newfileLoc);
-				logger.debug("File split successfully." );
+				//logger.debug("File split successfully." );
 				}
 	}
 		 else{
-				logger.debug("File having only one sequence. Copying to IN" );
+				//logger.debug("File having only one sequence. Copying to IN" );
 							write_file(filename,newfileLoc);
-							logger.debug("File copied successfully." );
+							//logger.debug("File copied successfully." );
 						}	
 		br.close(); 
 	}
     catch(Exception e)
     {
-    	logger.debug("Exception caught." );
-    	logger.debug(e);
+    	//logger.debug("Exception caught." );
+    	//logger.debug(e);
     }
 	}
 	
 	  static   void split_file(String filename, String newfileLoc) 
 	     { 
 		     String aline= "Start";
-		     logger.debug("Inside split_file"+ aline);
+		    // logger.debug("Inside split_file"+ aline);
 		     BufferedReader br = null;
 			    try
 			    { 
@@ -116,10 +115,10 @@ public class ASN_SPLIT_FILE {
                      if((aline=br.readLine()) !=null && aline.contains("HEADER"))
 				  {	 
 					
-                    	 logger.debug("First Line of split file :"+ aline);
+                    	//logger.debug("First Line of split file :"+ aline);
  
                     	 newfile=newfileLoc+"_"+getTimeStamp();
-                    	 logger.debug("new file name :"+ newfile);
+                    	 //logger.debug("new file name :"+ newfile);
 				    	 nfile[x]= new File(newfile);
 				    	BufferedWriter []out1 = new BufferedWriter[10];
 				    			out1[x]=new BufferedWriter( new FileWriter(nfile[x]));
@@ -133,16 +132,16 @@ public class ASN_SPLIT_FILE {
 	                	out1[x].flush();
 	                 }
 	                
-	                   logger.debug("Last Line ignored to write in file :"+ aline);
+	                   //logger.debug("Last Line ignored to write in file :"+ aline);
 	                //String lline=aline.substring(0,33)+"00000000000";
 	                   //out1[x].write(lline);
 	                   //logger.debug("Last Line of splited file after changing trailer count :"+ lline);
 					  out1[x].close();
 					  
 				String	  movedfile=movefolder+"_"+getTimeStamp();
-				 logger.debug("copy_fileToIn is called :-->"+ movedfile);	 
+				 //logger.debug("copy_fileToIn is called :-->"+ movedfile);	 
 				copy_fileToIn(newfile,movedfile); 
-					  logger.debug("deleting existing split is called :-->"+ newfile);
+					  //logger.debug("deleting existing split is called :-->"+ newfile);
 					  manySec(300);
 					  nfile[x].delete();
 				  }
@@ -183,18 +182,18 @@ public class ASN_SPLIT_FILE {
           	out1.flush();
            }
 		  out1.close();
-		  logger.debug("Last Line ignored to write in file :"+ aline);
+		  //logger.debug("Last Line ignored to write in file :"+ aline);
 		  
 		  String	  movedfile=movefolder+"_"+getTimeStamp();
-			 logger.debug("copy_fileToIn is called :-->"+ movedfile);	 
+			 //logger.debug("copy_fileToIn is called :-->"+ movedfile);	 
 			copy_fileToIn(newfile,movedfile); 
-				  logger.debug("deleting existing file in split_folder is called :-->"+ newfile);
+				  //logger.debug("deleting existing file in split_folder is called :-->"+ newfile);
 				  xfile.delete();
 		  br.close();
 		  }
 		  catch(Exception e)
 		  {
-			  logger.debug("Exception occured :-->"+ e);
+			//  logger.debug("Exception occured :-->"+ e);
 		  }
 		  
 	  }
